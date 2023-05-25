@@ -7,7 +7,10 @@ class Student {
 public:
     friend std::ostream& operator<<(std::ostream& stream, const Student& student);
     friend std::ofstream& operator<<(std::ofstream& stream, const Student& student);
-    bool operator<<(std::istream& stream);
+    Student& operator<<(std::istream& stream);
+    explicit operator bool() const{
+        return (bool)(rok);
+    }
 
 public:
     std::string imie;

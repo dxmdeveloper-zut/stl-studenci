@@ -14,16 +14,17 @@ std::ofstream& operator<<(std::ofstream& stream, const Student& student){
     return stream;
 }
 
-bool Student::operator<<(std::istream& stream){
+Student& Student::operator<<(std::istream& stream){
     std::string line;
+    this->rok = 0;
     
-    if(stream.eof() || !stream) return false;
+    if(stream.eof() || !stream) return *this;
     std::getline(stream, this->imie);
-    if(this->imie.empty()) return false;
+    if(this->imie.empty()) return *this;
     std::getline(stream, this->nazwisko);
     std::getline(stream, this->nrAlbumu);
     std::getline(stream, this->grupa);
     std::getline(stream, line);
     this->rok = std::stoi(line);
-    return true;
+    return *this;
 }
